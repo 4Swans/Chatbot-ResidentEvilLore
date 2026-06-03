@@ -1,0 +1,15 @@
+# Environments
+venv/
+env/
+.env
+
+# Cache
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# JANGAN ignore chroma_db karena kita butuh databasenya ikut ke-deploy ke Streamlit Cloud
+# chroma_db/

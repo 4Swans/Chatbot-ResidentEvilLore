@@ -1,0 +1,8 @@
+streamlit
+chromadb
+langchain
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+python-dotenv
+pysqlite3-binary
