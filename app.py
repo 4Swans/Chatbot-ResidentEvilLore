@@ -155,7 +155,7 @@ with st.sidebar:
     st.markdown("""
     - 🤖 **LLM**: Gemini 2.5 Flash
     - 🗄️ **Vector DB**: ChromaDB
-    - 🔤 **Embedding**: text-embedding-004
+    - 🔤 **Embedding**: text-embedding-001
     - 🖥️ **UI**: Streamlit
     """)
 
