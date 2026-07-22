@@ -15,6 +15,10 @@ from datetime import datetime
 # Fix encoding untuk Windows
 sys.stdout.reconfigure(encoding='utf-8')
 
+# Tambahkan root proyek ke sys.path agar bisa import rag_chain & ingest
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT_DIR)
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -323,7 +327,7 @@ def main():
     
     # 3. Simpan hasil
     print("\n💾 [3/3] Menyimpan hasil pengujian...")
-    output_file = os.path.join("Data", "hasil_pengujian_rag.txt")
+    output_file = os.path.join(ROOT_DIR, "Data", "hasil_pengujian_rag.txt")
     save_results(stats, results, output_file)
     print(f"   Hasil disimpan di: {output_file}")
     

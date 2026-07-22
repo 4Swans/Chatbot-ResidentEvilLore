@@ -4,6 +4,13 @@ Script untuk menampilkan hasil retrieval chunk dari ChromaDB ke terminal.
 Digunakan hanya untuk keperluan dokumentasi / penulisan skripsi.
 """
 
+import os
+import sys
+
+# Tambahkan root proyek ke sys.path agar bisa import rag_chain
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT_DIR)
+
 from rag_chain import get_retriever
 from dotenv import load_dotenv
 
