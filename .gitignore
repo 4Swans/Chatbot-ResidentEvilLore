@@ -11,5 +11,4 @@ __pycache__/
 .vscode/
 .idea/
 
-# JANGAN ignore chroma_db karena kita butuh databasenya ikut ke-deploy ke Streamlit Cloud
-# chroma_db/
+
