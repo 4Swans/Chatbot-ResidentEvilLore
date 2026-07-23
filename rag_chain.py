@@ -73,31 +73,6 @@ def format_docs(docs) -> str:
     return "\n\n---\n\n".join(formatted)
 
 
-def get_rag_chain():
-    """Membuat RAG chain lengkap: retriever → prompt → LLM → output."""
-    retriever = get_retriever()
-
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_API_KEY"),
-        temperature=0.3,
-    )
-
-    prompt = ChatPromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
-
-    rag_chain = (
-        {
-            "context": retriever | format_docs,
-            "question": RunnablePassthrough(),
-        }
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
-
-    return rag_chain
-
-
 def query(question: str) -> dict:
     """
     Menjalankan RAG query dan mengembalikan jawaban beserta sumber.
