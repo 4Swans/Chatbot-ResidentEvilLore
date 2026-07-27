@@ -5,5 +5,4 @@ langchain-google-genai
 langchain-chroma
 langchain-text-splitters
 python-dotenv
-pysqlite3-binary
 protobuf==3.20.3

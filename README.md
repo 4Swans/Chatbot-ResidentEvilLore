@@ -15,11 +15,6 @@ Chatbot berbasis Retrieval-Augmented Generation (RAG) yang menggunakan data Lore
 
 Buka terminal pilihan Anda (PowerShell atau Command Prompt) pada direktori proyek:
 
-```bash
-c:\Kuliah\Semester 8\Skripsi\Resident-Evil-Lore_LLM_RAG
-```
-
----
 
 ## 2. Aktifkan Virtual Environment (venv)
 

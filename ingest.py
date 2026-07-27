@@ -4,7 +4,6 @@ ingest.py - Data Ingestion Pipeline
 Membaca data JSON Resident Evil lore, melakukan chunking,
 embedding via Gemini, dan menyimpan ke ChromaDB.
 
-Jalankan sekali: python ingest.py
 """
 
 import json
@@ -92,7 +91,7 @@ def create_embeddings_and_store(chunks: list[Document]) -> Chroma:
         shutil.rmtree(CHROMA_DIR)
         print("   🗑️  Database lama dihapus.")
 
-    # Buat ChromaDB kosong dulu
+    # Buat ChromaDB
     vectorstore = Chroma(
         persist_directory=CHROMA_DIR,
         embedding_function=embedding_function,

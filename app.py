@@ -6,7 +6,6 @@ Jalankan: streamlit run app.py
 """
 
 # --- SQLite Workaround untuk Streamlit Cloud ---
-# Streamlit Cloud kadang menggunakan versi SQLite lama yang tidak kompatibel dengan ChromaDB
 try:
     __import__('pysqlite3')
     import sys
@@ -24,7 +23,7 @@ from rag_chain import query, get_collection_count
 # ── Page Config ─────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Resident Evil Lore Chatbot",
-    page_icon="🧬",
+    page_icon="RE",
     layout="centered",
     initial_sidebar_state="expanded",
 )
@@ -123,7 +122,7 @@ st.markdown("""
 # ── Header ──────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
-    <h1>🧬 Resident Evil Lore Chatbot</h1>
+    <h1>Resident Evil Lore Chatbot</h1>
     <p>Tanyakan apapun tentang cerita & lore Resident Evil — Powered by RAG + Gemini AI</p>
 </div>
 <div class="header-divider"></div>
@@ -131,7 +130,7 @@ st.markdown("""
 
 # ── Sidebar ─────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 🎮 Tentang")
+    st.markdown("## Tentang")
     st.markdown(
         "Chatbot ini menggunakan **Retrieval-Augmented Generation (RAG)** "
         "untuk menjawab pertanyaan seputar lore Resident Evil berdasarkan "
@@ -151,18 +150,18 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.markdown("### ⚙️ Teknologi")
+    st.markdown("### Teknologi")
     st.markdown("""
-    - 🤖 **LLM**: Gemini 2.5 Flash
-    - 🗄️ **Vector DB**: ChromaDB
-    - 🔤 **Embedding**: text-embedding-004
-    - 🖥️ **UI**: Streamlit
+    - **LLM**: Gemini 2.5 Flash
+    - **Vector DB**: ChromaDB
+    - **Embedding**: text-embedding-001
+    - **UI**: Streamlit
     """)
 
     st.markdown("---")
 
     # Tombol clear chat
-    if st.button("🗑️ Hapus Riwayat Chat", use_container_width=True):
+    if st.button("Hapus Riwayat Chat", use_container_width=True):
         st.session_state.messages = []
         st.rerun()
 
@@ -172,20 +171,20 @@ if "messages" not in st.session_state:
 
 # ── Tampilkan history chat ──────────────────────────────────────────────
 for message in st.session_state.messages:
-    with st.chat_message(message["role"], avatar="🧟" if message["role"] == "assistant" else "🧑"):
+    with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
         # Tampilkan sumber jika ada
         if message.get("sources"):
             sources_html = "".join(
-                f'<span class="source-badge">📖 {src["game"]}</span>'
+                f'<span class="source-badge">{src["game"]}</span>'
                 for src in message["sources"]
             )
             st.markdown(f"<div style='margin-top: 0.5rem;'>{sources_html}</div>", unsafe_allow_html=True)
 
 # ── Suggestion chips jika belum ada chat ────────────────────────────────
 if not st.session_state.messages:
-    st.markdown("#### 💡 Coba tanyakan:")
+    st.markdown("#### Coba tanyakan:")
     suggestions = [
         "Siapa Albert Wesker?",
         "Apa itu T-Virus?",
@@ -217,13 +216,13 @@ if user_input:
 
 if prompt:
     # Tampilkan pesan user
-    with st.chat_message("user", avatar="🧑"):
+    with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     # Generate jawaban
-    with st.chat_message("assistant", avatar="🧟"):
-        with st.spinner("🔍 Mencari di database lore..."):
+    with st.chat_message("assistant"):
+        with st.spinner("Mencari di database lore..."):
             try:
                 result = query(prompt)
                 answer = result["answer"]
@@ -234,7 +233,7 @@ if prompt:
                 # Tampilkan sumber
                 if sources:
                     sources_html = "".join(
-                        f'<span class="source-badge">📖 {src["game"]}</span>'
+                        f'<span class="source-badge">{src["game"]}</span>'
                         for src in sources
                     )
                     st.markdown(
@@ -249,7 +248,7 @@ if prompt:
                 })
 
             except Exception as e:
-                error_msg = f"❌ Terjadi error: {str(e)}"
+                error_msg = f"Terjadi error: {str(e)}"
                 st.error(error_msg)
                 st.session_state.messages.append({
                     "role": "assistant",
