@@ -20,7 +20,7 @@ os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
 import streamlit as st
 from rag_chain import query, get_collection_count
 
-# ── Page Config ─────────────────────────────────────────────────────────
+# ── Page Config ──
 st.set_page_config(
     page_title="Resident Evil Lore Chatbot",
     page_icon="RE",
@@ -28,7 +28,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Custom CSS ──────────────────────────────────────────────────────────
+# ── Custom CSS ──
 st.markdown("""
 <style>
     /* ── Import font ── */
@@ -119,7 +119,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ──────────────────────────────────────────────────────────────
+# ── Header ──
 st.markdown("""
 <div class="main-header">
     <h1>Resident Evil Lore Chatbot</h1>
@@ -128,7 +128,7 @@ st.markdown("""
 <div class="header-divider"></div>
 """, unsafe_allow_html=True)
 
-# ── Sidebar ─────────────────────────────────────────────────────────────
+# ── Sidebar ──
 with st.sidebar:
     st.markdown("## Tentang")
     st.markdown(
@@ -165,11 +165,11 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
 
-# ── Session State ───────────────────────────────────────────────────────
+# ── Session State ───
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ── Tampilkan history chat ──────────────────────────────────────────────
+# ── Tampilkan history chat ───
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
@@ -182,7 +182,7 @@ for message in st.session_state.messages:
             )
             st.markdown(f"<div style='margin-top: 0.5rem;'>{sources_html}</div>", unsafe_allow_html=True)
 
-# ── Suggestion chips jika belum ada chat ────────────────────────────────
+# ── Suggestion chips jika belum ada chat ───
 if not st.session_state.messages:
     st.markdown("#### Coba tanyakan:")
     suggestions = [
@@ -201,7 +201,7 @@ if not st.session_state.messages:
                 st.session_state.pending_question = suggestion
                 st.rerun()
 
-# ── Chat input ──────────────────────────────────────────────────────────
+# ── Chat input ───
 # Cek apakah ada pending question dari suggestion
 prompt = None
 if "pending_question" in st.session_state:
